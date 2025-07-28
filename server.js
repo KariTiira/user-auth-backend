@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 var cors = require('cors')
-const { registerUser, loginUser } = require('./userController');
+const { registerUser, loginUser, getUser } = require('./userController');
 const { verifyToken } = require('./authMiddleware');
 
 
@@ -22,6 +22,4 @@ app.post('/register', registerUser);
 app.post('/login', loginUser);
 
 // Protected route
-app.get('/dashboard', verifyToken, (req, res) => {
-    res.json({ message: `Welcome to the dashboard, ${req.user.username}!` });
-});
+app.get('/profile', verifyToken, getUser);

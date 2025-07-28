@@ -35,3 +35,15 @@ exports.loginUser = async (req, res) => {
 
     res.json({ token });
 };
+
+exports.getUser = (req, res) => {
+    console.log(req.user)
+    const user = users.find(u => u.email === req.user.email);
+    const profile = {
+        etunimi: user.etunimi,
+        sukunimi: user.sukunimi,
+        email: user.email
+    };
+    console.log(profile);
+    res.json(profile);
+};
